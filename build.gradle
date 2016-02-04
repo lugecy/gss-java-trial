@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
 
-mainClassName = 'HelloGradle'
+mainClassName = 'GssApi'
 
 repositories {
   mavenCentral()
@@ -9,11 +9,14 @@ repositories {
 
 dependencies {
   compile 'org.codehaus.groovy:groovy-all:2.4.4'
+
+  compile 'com.google.api-client:google-api-client:1.20.0'
+  compile 'com.google.gdata:core:1.47.1'
 }
 
 jar {
   manifest {
-    attributes 'Implementation-Title': 'Hello Gradle', 'Implementation-Version': 1.0
+    attributes 'Implementation-Title': 'GSS API Trial', 'Implementation-Version': 1.0
     attributes "Main-Class" : mainClassName
   }
   from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
