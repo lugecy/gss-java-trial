@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = 'HelloGradle'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.4.4'
+}
+
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'Hello Gradle', 'Implementation-Version': 1.0
+    attributes "Main-Class" : mainClassName
+  }
+  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}
